@@ -10,7 +10,7 @@ from vect2d import vect2d
 
 class Car:
     x = 0
-    y = 0       #coordinate rispetto al sistema di riferimento globale, la posizione sullo schermo è relativa alla posizione della macchina migliore
+    y = 0       #coordinates with respect to the global reference system, the position on the screen is relative to the position of the best machine
 
 
     def __init__(self, x, y, turn):
@@ -25,7 +25,7 @@ class Car:
 
     def initImgs(self):
         img_names = ["yellow_car.png", "red_car.png", "blu_car.png", "green_car.png"]
-        name = img_names[floor(random()*len(img_names))%len(img_names)]                 #prendi a caso una di queste immagini
+        name = img_names[floor(random()*len(img_names))%len(img_names)]                 #take one of these pictures at random
 
         self.img = py.transform.rotate(py.transform.scale(py.image.load(os.path.join("imgs", name)).convert_alpha(), (120,69)), -90)
         self.brake_img = py.transform.rotate(py.transform.scale(py.image.load(os.path.join("imgs", "brakes.png")).convert_alpha(), (120,69)), -90)
@@ -45,7 +45,7 @@ class Car:
                     continue
         return False
 
-    def getInputs(self, world, road):         #win serve per disegnare i sensori se DBG = True
+    def getInputs(self, world, road):         #win is used to draw the sensors if DBG = True
         sensors = []
         for k in range(8):
             sensors.append(SENSOR_DISTANCE)
@@ -64,7 +64,7 @@ class Car:
                 omega = radians(self.rot + 45*k)
                 dx = s * sin(omega)
                 dy = - s * cos(omega)
-                #disegna intersezioni dei sensori
+                #draws sensor intersections
                 if s < SENSOR_DISTANCE:
                     py.draw.circle(world.win, RED, world.getScreenCoords(self.x+dx, self.y+dy), 6)
 
